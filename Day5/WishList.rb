@@ -21,7 +21,7 @@ end
 def add_item(final_list)
     item = gets.chomp
     final_list = final_list.push(item)
-    puts "So far you have #{final_list}""
+    puts "So far you have #{final_list}"
 end
 #---------------------------------------------------------------------------------
 
@@ -32,4 +32,6 @@ while anything_else.include?("y")
     add_item(final_list)    
     anything_else
 end
+
+puts "branch update"
         
