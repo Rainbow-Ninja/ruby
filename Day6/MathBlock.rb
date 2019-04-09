@@ -59,4 +59,3 @@ end
 
 result = my_map(numbers) {|num| num + 5}
 puts "map result is #{result}"
-print numbers

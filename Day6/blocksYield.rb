@@ -77,3 +77,16 @@ print numbers.find {|num| num>5} #returns first num>5
 print numbers.find_all{|num| num>5} #returns all numbers >5
 print numbers.find_all{|num| num%2==0} #returns all even nums
 print numbers.delete_if{|num| num%2==0} #mutating. Also deletes all even numbers
+
+#  --------------------------------------------------------
+
+# def try
+#     if block_given?
+#       yield
+#     else
+#       "no block"
+#     end
+#   end
+#   try                  #=> "no block"
+#   try { "hello" }      #=> "hello"
+#   try do "hello" end   #=> "hello"
