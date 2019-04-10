@@ -49,7 +49,6 @@
 numbers = [1,2,3,4,5]
 def my_map(numbers)
     counter = 0
-    #results = []
     while counter < numbers.length
         numbers[counter]= yield(numbers[counter]) #do iterations and save in results array
         counter += 1
@@ -59,3 +58,4 @@ end
 
 result = my_map(numbers) {|num| num + 5}
 puts "map result is #{result}"
+puts "my numbers array is now #{numbers}"
