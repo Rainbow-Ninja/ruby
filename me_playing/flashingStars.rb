@@ -1,12 +1,10 @@
-counter = 10
-start = Time.now.strftime("%S").to_i
-final = start + 10
+start = 0
 stars1 = "*  *  *  *  *  *  *  *  *  *  *  *  *\n\n\n\n\n  *  *  *  *  *  *  *  *  *  *  *  * "
 stars2 = " *  *  *  *  *  *  *  *  *  *  *  *  \n\n\n\n\n *  *  *  *  *  *  *  *  *  *  *  *  "
 stars3 = "  *  *  *  *  *  *  *  *  *  *  *  * \n\n\n\n\n*  *  *  *  *  *  *  *  *  *  *  *  *"
 
 
-while(Time.now.strftime("%S").to_i <= final)
+while(start <= 20)
    print stars1
    sleep(0.1)
    system("clear")
@@ -16,5 +14,5 @@ while(Time.now.strftime("%S").to_i <= final)
    print stars3
    sleep(0.1)
    system("clear")
+   start +=1
 end
-puts "\nTime's up!"
