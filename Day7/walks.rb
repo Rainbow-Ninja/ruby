@@ -28,3 +28,4 @@ end
 doggo = Dog.new
 doggo.walk
 #doggo.walk.walk
+
