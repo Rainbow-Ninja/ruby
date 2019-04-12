@@ -17,12 +17,14 @@ end
 
 def switch_player(total_moves)
     total_moves +=1
-    if total_moves%2==0
-        $player = "Player 1"
-    else
-        $player = "Player 2"
+    if total_moves < 9
+        if total_moves%2==0
+            $player = "Player 1"
+        else
+            $player = "Player 2"
+        end
+        puts "\n#{$player} your turn: "
     end
-    puts "\n#{$player} your turn: "
     return total_moves
 end
 
@@ -35,51 +37,52 @@ def mark_board(moves_so_far, posA, posB)
 end
 
 def ask_for_move(moves_so_far)
-    valid_row = false
-    valid_column = false
     spot_free = false
-    
-    while valid_row == false
-        puts "\nWould you like to go in the \n1. Top row \n2. Middle row or \n3. Bottom row?\n(type 1, 2 or 3) "
-        row = gets.chomp.to_i
-        if row == 1
-            posA = 0
-            valid_row = true
-        elsif row == 2
-            posA = 1
-            valid_row = true
-        elsif row == 3
-            posA = 2
-            valid_row = true
-        else
-            puts "Invalid option. Try again: "
-        end
-    end
-    while valid_column == false
-        puts "\nWould you like to go on the \n1. Left \n2. Middle or \n3. Right of the row?\n(type 1, 2 or 3) "
-        column = gets.chomp.to_i
-        if column == 1
-            posB = 0
-            valid_column = true
-        elsif column == 2
-            posB = 1
-            valid_column = true
-        elsif column == 3
-            posB = 2
-            valid_column = true
-        else
-            puts "Invalid option. Try again: "
-        end
-    end
 
-    while spot_free == false    
+    while spot_free == false
+        valid_row = false
+        valid_column = false
+
+        while valid_row == false
+            puts "\nWould you like to go in the \n1. Top row \n2. Middle row or \n3. Bottom row?\n(type 1, 2 or 3) "
+            row = gets.chomp.to_i
+            if row == 1
+                posA = 0
+                valid_row = true
+            elsif row == 2
+                posA = 1
+                valid_row = true
+            elsif row == 3
+                posA = 2
+                valid_row = true
+            else
+                puts "\n*** Invalid option. Try again ***"
+            end
+        end
+        while valid_column == false
+            puts "\nWould you like to go on the \n1. Left \n2. Middle or \n3. Right of the row?\n(type 1, 2 or 3) "
+            column = gets.chomp.to_i
+            if column == 1
+                posB = 0
+                valid_column = true
+            elsif column == 2
+                posB = 1
+                valid_column = true
+            elsif column == 3
+                posB = 2
+                valid_column = true
+            else
+                puts "\n*** Invalid option. Try again ***"
+            end
+        end
+
+        # \while spot_free == false    
         if  moves_so_far[posA][posB] == "-"
             mark_board(moves_so_far, posA, posB)
             print_board(moves_so_far)
             spot_free = true
         else
-            puts "That spot is already taken. Try again "
-            ask_for_move(moves_so_far)
+            puts "\n* That spot is already taken. Try again *"
         end 
     end
 end
@@ -127,5 +130,5 @@ while no_winner&&(total_moves<9)
     end
 end
 if (total_moves == 9)
-    puts "We have a Draw!"
+    puts "\n** We have a Draw! **"
 end
