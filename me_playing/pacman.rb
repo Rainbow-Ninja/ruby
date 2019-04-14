@@ -3,7 +3,7 @@ $posA = 5
 $posB = 0
 current_spot = board[$posA][$posB]
 $score = 0
-$count
+$count = 0
 
 class String
     def gold; "\e[33m#{self}\e[0m" end
@@ -21,6 +21,7 @@ class String
     def bg_magenta; "\e[45m#{self}\e[0m" end
 end
 
+#initiate board
 board [0] = ["-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan]
 board [1] = ["|".cyan, "O".red, "o", "o", "o", "|".cyan, "o", "o", "o", "o", "o","o","o","o", "|".cyan, "o", "o", "o", "O".red, "|".cyan]
 board [2] = ["|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "-".cyan, "-".cyan, "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan]
@@ -33,18 +34,46 @@ board [8] = ["|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-
 board [9] = ["|".cyan, "O".red, "o", "o", "o", "|".cyan, "o", "o", "o", "o", "o","o","o","o", "|".cyan, "o", "o", "o", "O".red, "|".cyan]
 board [10] = ["-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan]
 
+
+def reset(board)
+    board_reset = []
+    if $count == 100
+        #attempt at resetting_board which doesnt work
+        board_reset [0] = ["-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan]
+        board_reset [1] = ["|".cyan, "O".red, "o", "o", "o", "|".cyan, "o", "o", "o", "o", "o","o","o","o", "|".cyan, "o", "o", "o", "O".red, "|".cyan]
+        board_reset [2] = ["|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "-".cyan, "-".cyan, "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan]
+        board_reset [3] = ["|".cyan, "o", "|".cyan, "o", "o", "o", "o", "o", "o", "o", "o","o","o","o", "o", "o", "o", "|".cyan, "o", "|".cyan]
+        board_reset [4] = ["|".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "o", "-".cyan, "-".cyan, " ", " ","-".cyan,"-".cyan,"o", "-".cyan, "-".cyan, "o", "|".cyan, "o", "|".cyan]
+        board_reset [5] = [" ", "o", "o", "o", "o", "o", "o", "|".cyan, "n".bg_red, "n".bg_blue, "n".bg_green, "n".bg_magenta, "|".cyan, "o", "o", "o", "o", "o", "o", " "]
+        board_reset [6] = ["|".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "o", "-".cyan, "-".cyan, "-".cyan, "-".cyan,"-".cyan,"-".cyan,"o", "-".cyan, "-".cyan, "o", "|".cyan, "o", "|".cyan]
+        board_reset [7] = ["|".cyan, "o", "|".cyan, "o", "o", "o", "o", "o", "o", "o", "o","o","o","o", "o", "o", "o", "|".cyan, "o", "|".cyan]
+        board_reset [8] = ["|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "-".cyan, "-".cyan, "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan]
+        board_reset [9] = ["|".cyan, "O".red, "o", "o", "o", "|".cyan, "o", "o", "o", "o", "o","o","o","o", "|".cyan, "o", "o", "o", "O".red, "|".cyan]
+        board_reset [10] = ["-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan]
+        return board_reset
+       # print_board(board)
+    else
+        return board
+    end
+end
+
 def print_board(board)
     system("clear")
     puts board.map { |x| x.join(' ') }
     puts "\nScore is  #{$score}"
     puts "\nHit 'q' to quit "
+    puts "count is #{$count}"
 end
 
-def current_score(current_spot)
+def current_score(current_spot, board)
     if current_spot == "o"
         $score += 10
-        $count += 1 #use later to annouce winning
+        $count += 1
+    elsif current_spot == "O".red
+        $score += 50 
+        $count += 1
     end
+    return board = reset(board)
 end
 
 def move_up(board, current_spot)
@@ -54,7 +83,7 @@ def move_up(board, current_spot)
         board[$posA][$posB] = " "
         $posA = $posA-1
         current_spot = board[$posA][$posB]
-        current_score(current_spot)
+        board = current_score(current_spot, board)
         board[$posA][$posB] = "c".gold
         print_board(board)
     end
@@ -68,7 +97,7 @@ def move_down(board, current_spot)
         board[$posA][$posB] = " "
         $posA = $posA+1
         current_spot = board[$posA][$posB]
-        current_score(current_spot)
+        board = current_score(current_spot, board)
         board[$posA][$posB] = "c".gold
         print_board(board)
     end
@@ -82,14 +111,14 @@ def move_right(board, current_spot)
         board[$posA][$posB] = " "
         $posB = $posB - 19
         current_spot = board[$posA][$posB]
-        current_score(current_spot)
+        board = current_score(current_spot, board)
         board[$posA][$posB] = "c".gold
         print_board(board)
     else
         board[$posA][$posB] = " "
         $posB = $posB + 1
         current_spot = board[$posA][$posB]
-        current_score(current_spot)
+        board = current_score(current_spot, board)
         board[$posA][$posB] = "c".gold
         print_board(board)
     end
@@ -103,14 +132,14 @@ def move_left(board, current_spot)
         board[$posA][$posB] = " "
         $posB = $posB + 19
         current_spot = board[$posA][$posB]
-        current_score(current_spot)
+        board = current_score(current_spot, board)
         board[$posA][$posB] = "c".gold
         print_board(board)
     else
         board[$posA][$posB] = " "
         $posB = $posB-1
         current_spot = board[$posA][$posB]
-        current_score(current_spot)
+        board = current_score(current_spot, board)
         board[$posA][$posB] = "c".gold
         print_board(board)
     end
@@ -120,6 +149,7 @@ end
 def pill
     
 end
+
 
 def conflict
 
@@ -143,3 +173,18 @@ loop do
       end
     end
   end
+
+
+# #TO DO:
+# - the if statement in the moves needs to be the conflict method
+# - moves need to become block statements
+# - ghosts need to move randomly. Aim one at my position - compare posA to ghostposA etc if cant move left/right, then compare posB etc. Have two do that are various speeds. Other 2??
+# - me get larger when eat red pill and maybe flash?? for 5(?) secs. Ghosts change colour and become vulnerable and move away from me. As it wears off ghosts flash...
+# - when ghosts die they returning to start for a few secs before coming out again
+# - when i die lose a life (need lives!!) and points (?). I die when i touch a ghost while not big (or flashing)
+# - extra points for me killing a ghost
+# - random dots change colour, if I eat them I get extra points
+# - If I eat all the dots board resets
+# - win and/or kill screen with score
+
+#glitch - after reset he no longer eats. Also when walks into walls the board disappears momentarily
