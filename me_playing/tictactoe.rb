@@ -59,6 +59,7 @@ def ask_for_move(moves_so_far) #asks player for position to mark. Loops until va
                 puts "\n*** Invalid option. Try again ***"
             end
         end
+        
         while valid_column == false #loops until player gives valid column choice
             puts "\nWould you like to go on the \n1. Left \n2. Middle or \n3. Right of the row?\n(type 1, 2 or 3) "
             column = gets.chomp.to_i

@@ -34,21 +34,31 @@ board [8] = ["|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-
 board [9] = ["|".cyan, "O".red, "o", "o", "o", "|".cyan, "o", "o", "o", "o", "o","o","o","o", "|".cyan, "o", "o", "o", "O".red, "|".cyan]
 board [10] = ["-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan]
 
-$reset_board = board.clone
 
-#when eaten all 100 'o' reset the board
 def reset(board)
+    board_reset = []
     if $count == 100
-        board = $reset_board
-        board[5][0] = " " #don't put pacman back where he was
-        board[$posA][$posB] = "c".gold #keep pacman in current position
-        return board
+        #attempt at resetting_board which \doesnt work
+        board_reset [0] = ["-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan]
+        board_reset [1] = ["|".cyan, "O".red, "o", "o", "o", "|".cyan, "o", "o", "o", "o", "o","o","o","o", "|".cyan, "o", "o", "o", "O".red, "|".cyan]
+        board_reset [2] = ["|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "-".cyan, "-".cyan, "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan]
+        board_reset [3] = ["|".cyan, "o", "|".cyan, "o", "o", "o", "o", "o", "o", "o", "o","o","o","o", "o", "o", "o", "|".cyan, "o", "|".cyan]
+        board_reset [4] = ["|".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "o", "-".cyan, "-".cyan, " ", " ","-".cyan,"-".cyan,"o", "-".cyan, "-".cyan, "o", "|".cyan, "o", "|".cyan]
+        board_reset [5] = [" ", "o", "o", "o", "o", "o", "o", "|".cyan, "n".bg_red, "n".bg_blue, "n".bg_green, "n".bg_magenta, "|".cyan, "o", "o", "o", "o", "o", "o", " "]
+        board_reset [6] = ["|".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "o", "-".cyan, "-".cyan, "-".cyan, "-".cyan,"-".cyan,"-".cyan,"o", "-".cyan, "-".cyan, "o", "|".cyan, "o", "|".cyan]
+        board_reset [7] = ["|".cyan, "o", "|".cyan, "o", "o", "o", "o", "o", "o", "o", "o","o","o","o", "o", "o", "o", "|".cyan, "o", "|".cyan]
+        board_reset [8] = ["|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "-".cyan, "-".cyan, "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan]
+        board_reset [9] = ["|".cyan, "O".red, "o", "o", "o", "|".cyan, "o", "o", "o", "o", "o","o","o","o", "|".cyan, "o", "o", "o", "O".red, "|".cyan]
+        board_reset [10] = ["-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan]
+        $count = 0
+        return board_reset
+       # print_board(board)
     else
-        return board
+       return board
     end
 end
 
-def print_board(board) #print out the board with current score
+def print_board(board)
     system("clear")
     puts board.map { |x| x.join(' ') }
     puts "\nScore is  #{$score}"
@@ -56,21 +66,21 @@ def print_board(board) #print out the board with current score
     puts "count is #{$count}"
 end
 
-def current_score(current_spot, board) 
-    if current_spot == "o" #10 pts for eating 'o'
+def current_score(current_spot, board)
+    if current_spot == "o"
         $score += 10
         $count += 1
-    elsif current_spot == "O".red #50 pts for eating 'O'
+    elsif current_spot == "O".red
         $score += 50 
         $count += 1
     end
-    # if $count == 100 #if eaten all 'o' reset board
-    #     board = reset(board) 
-    # end
+   # if $count == 100
+        return board = reset(board)
+    #end
 end
 
 def move_up(board, current_spot)
-    if (board[$posA-1][$posB] == "-".cyan)||(board[$posA-1][$posB] == "|".cyan) #dont walk through walls
+    if (board[$posA-1][$posB] == "-".cyan)||(board[$posA-1][$posB] == "|".cyan)
         print_board(board)
     else
         board[$posA][$posB] = " "
