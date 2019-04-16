@@ -34,18 +34,14 @@ board [8] = ["|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-
 board [9] = ["|".cyan, "O".red, "o", "o", "o", "|".cyan, "o", "o", "o", "o", "o","o","o","o", "|".cyan, "o", "o", "o", "O".red, "|".cyan]
 board [10] = ["-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan]
 
-$reset_board = board.clone
+$reset_board = board
 
 #when eaten all 100 'o' reset the board
-def reset(board)
-    if $count == 100
+def reset(board) #called by current score
+        $count = 0
         board = $reset_board
-        board[5][0] = " " #don't put pacman back where he was
-        board[$posA][$posB] = "c".gold #keep pacman in current position
-        return board
-    else
-        return board
-    end
+        board[5][0] = " " #don't put board[$posA][$posB] = "c".gold #keep pacman in current position
+        return board #board
 end
 
 def print_board(board) #print out the board with current score
@@ -56,7 +52,7 @@ def print_board(board) #print out the board with current score
     puts "count is #{$count}"
 end
 
-def current_score(current_spot, board) 
+def current_score(current_spot, board) #called by up/down/left/right
     if current_spot == "o" #10 pts for eating 'o'
         $score += 10
         $count += 1
@@ -64,9 +60,12 @@ def current_score(current_spot, board)
         $score += 50 
         $count += 1
     end
-    # if $count == 100 #if eaten all 'o' reset board
-    #     board = reset(board) 
-    # end
+    if $count == 100 #if eaten all 'o' reset board
+        return reset(board) 
+    else
+        return board #if not return the current board
+    end
+    
 end
 
 def move_up(board, current_spot)
@@ -148,6 +147,7 @@ def conflict
 
 end
 
+#------------------------------------------------------------------
 print_board(board)
 require 'io/console'
 loop do

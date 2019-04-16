@@ -4,6 +4,7 @@ $posB = 0
 current_spot = board[$posA][$posB]
 $score = 0
 $count = 0
+$level = 1
 
 class String
     def gold; "\e[33m#{self}\e[0m" end
@@ -35,48 +36,48 @@ board [9] = ["|".cyan, "O".red, "o", "o", "o", "|".cyan, "o", "o", "o", "o", "o"
 board [10] = ["-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan]
 
 
-def reset(board)
+def reset #called by current_score
     board_reset = []
-    if $count == 100
-        #attempt at resetting_board which \doesnt work
-        board_reset [0] = ["-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan]
-        board_reset [1] = ["|".cyan, "O".red, "o", "o", "o", "|".cyan, "o", "o", "o", "o", "o","o","o","o", "|".cyan, "o", "o", "o", "O".red, "|".cyan]
-        board_reset [2] = ["|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "-".cyan, "-".cyan, "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan]
-        board_reset [3] = ["|".cyan, "o", "|".cyan, "o", "o", "o", "o", "o", "o", "o", "o","o","o","o", "o", "o", "o", "|".cyan, "o", "|".cyan]
-        board_reset [4] = ["|".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "o", "-".cyan, "-".cyan, " ", " ","-".cyan,"-".cyan,"o", "-".cyan, "-".cyan, "o", "|".cyan, "o", "|".cyan]
-        board_reset [5] = [" ", "o", "o", "o", "o", "o", "o", "|".cyan, "n".bg_red, "n".bg_blue, "n".bg_green, "n".bg_magenta, "|".cyan, "o", "o", "o", "o", "o", "o", " "]
-        board_reset [6] = ["|".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "o", "-".cyan, "-".cyan, "-".cyan, "-".cyan,"-".cyan,"-".cyan,"o", "-".cyan, "-".cyan, "o", "|".cyan, "o", "|".cyan]
-        board_reset [7] = ["|".cyan, "o", "|".cyan, "o", "o", "o", "o", "o", "o", "o", "o","o","o","o", "o", "o", "o", "|".cyan, "o", "|".cyan]
-        board_reset [8] = ["|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "-".cyan, "-".cyan, "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan]
-        board_reset [9] = ["|".cyan, "O".red, "o", "o", "o", "|".cyan, "o", "o", "o", "o", "o","o","o","o", "|".cyan, "o", "o", "o", "O".red, "|".cyan]
-        board_reset [10] = ["-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan]
-        $count = 0
-        return board_reset
-       # print_board(board)
-    else
-       return board
-    end
+    board_reset [0] = ["-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan]
+    board_reset [1] = ["|".cyan, "O".red, "o", "o", "o", "|".cyan, "o", "o", "o", "o", "o","o","o","o", "|".cyan, "o", "o", "o", "O".red, "|".cyan]
+    board_reset [2] = ["|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "-".cyan, "-".cyan, "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan]
+    board_reset [3] = ["|".cyan, "o", "|".cyan, "o", "o", "o", "o", "o", "o", "o", "o","o","o","o", "o", "o", "o", "|".cyan, "o", "|".cyan]
+    board_reset [4] = ["|".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "o", "-".cyan, "-".cyan, " ", " ","-".cyan,"-".cyan,"o", "-".cyan, "-".cyan, "o", "|".cyan, "o", "|".cyan]
+    board_reset [5] = [" ", "o", "o", "o", "o", "o", "o", "|".cyan, "n".bg_red, "n".bg_blue, "n".bg_green, "n".bg_magenta, "|".cyan, "o", "o", "o", "o", "o", "o", " "]
+    board_reset [6] = ["|".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "o", "-".cyan, "-".cyan, "-".cyan, "-".cyan,"-".cyan,"-".cyan,"o", "-".cyan, "-".cyan, "o", "|".cyan, "o", "|".cyan]
+    board_reset [7] = ["|".cyan, "o", "|".cyan, "o", "o", "o", "o", "o", "o", "o", "o","o","o","o", "o", "o", "o", "|".cyan, "o", "|".cyan]
+    board_reset [8] = ["|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "-".cyan, "-".cyan, "-".cyan, "-".cyan, "o", "|".cyan, "o", "-".cyan, "-".cyan, "o", "|".cyan]
+    board_reset [9] = ["|".cyan, "O".red, "o", "o", "o", "|".cyan, "o", "o", "o", "o", "o","o","o","o", "|".cyan, "o", "o", "o", "O".red, "|".cyan]
+    board_reset [10] = ["-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan,"-".cyan]
+    $count = 1
+    $level += 1
+    return board_reset
 end
 
 def print_board(board)
     system("clear")
     puts board.map { |x| x.join(' ') }
-    puts "\nScore is  #{$score}"
+    puts "\nScore is  #{$score}                  Level #{$level}"
     puts "\nHit 'q' to quit "
-    puts "count is #{$count}"
 end
 
-def current_score(current_spot, board)
+def current_score(current_spot, board) #called by up/down/left/right
     if current_spot == "o"
         $score += 10
         $count += 1
     elsif current_spot == "O".red
         $score += 50 
         $count += 1
+    else
+        $score = $score
     end
-   # if $count == 100
-        return board = reset(board)
-    #end
+
+    if $count == 100
+        board = reset
+        return board
+    else
+        return board
+    end
 end
 
 def move_up(board, current_spot)
@@ -90,7 +91,7 @@ def move_up(board, current_spot)
         board[$posA][$posB] = "c".gold
         print_board(board)
     end
-    return current_spot
+    return board
 end
 
 def move_down(board, current_spot)
@@ -104,7 +105,7 @@ def move_down(board, current_spot)
         board[$posA][$posB] = "c".gold
         print_board(board)
     end
-    return current_spot
+    return board
 end
 
 def move_right(board, current_spot)
@@ -125,7 +126,7 @@ def move_right(board, current_spot)
         board[$posA][$posB] = "c".gold
         print_board(board)
     end
-    return current_spot
+    return board
 end
 
 def move_left(board, current_spot)
@@ -146,7 +147,7 @@ def move_left(board, current_spot)
         board[$posA][$posB] = "c".gold
         print_board(board)
     end
-    return current_spot
+    return board
 end
 
 def pill
@@ -168,10 +169,10 @@ loop do
       case $stdin.getch
       when '['  # CSI
         case $stdin.getch
-        when 'A' then move_up(board, current_spot)
-        when 'B' then move_down(board, current_spot)
-        when 'C' then move_right(board, current_spot)
-        when 'D' then move_left(board, current_spot)
+        when 'A' then board = move_up(board, current_spot)
+        when 'B' then board = move_down(board, current_spot)
+        when 'C' then board = move_right(board, current_spot)
+        when 'D' then board = move_left(board, current_spot)
         end
       end
     end

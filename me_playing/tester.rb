@@ -237,14 +237,40 @@
 #     end
 #   end
 
-arr1 = [0, 1, 2, 3, 4, [5, 7, 4]]
-arr2 = arr1.clone#[0, 1, 2, 3, 4, 5]
+def reset(arr1, arr2)
+    arr1 = arr2
+    puts "arrays in reset method (should be same)"
+    p arr1
+    p arr2
+    return arr1
+end
+
+def midPt(arr1, arr2)
+    puts "MidPt method (should be diff)"
+    p arr1
+    p arr2
+    arr1[0][0] = 21
+    puts "one more change in midpt"
+    p arr1
+    reset(arr1, arr2)
+    puts "after reset but still in midpt (should be same?)"
+    p arr1
+    p arr2
+end
+
+arr1 = [[0, 2], [2, 3], [4, 5], [6, 7]]
+arr2 = [[0, 2], [2, 3], [4, 5], [6, 7]]
+puts "original arrays (should be the same)"
 p arr1
 p arr2
-arr1[3] = 7
-arr1[0] = 22
-arr1[5] = 3
+arr1[3][0] = 7
+arr1[0][1] = 22
+arr1[1][1] = 10
+puts "changed arr1 not arr2"
 p arr1
 p arr2
-arr1 = arr2
+midPt(arr1, arr2)
+reset(arr1, arr2)
+puts "after midpt and reset (same?)"
 p arr1
+p arr2
