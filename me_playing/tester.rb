@@ -249,7 +249,7 @@ def midPt(arr1, arr2)
     puts "MidPt method (should be diff)"
     p arr1
     p arr2
-    arr1[0][0] = 21
+    arr1[0] = 21
     puts "one more change in midpt"
     p arr1
     reset(arr1, arr2)
@@ -258,14 +258,18 @@ def midPt(arr1, arr2)
     p arr2
 end
 
-arr1 = [[0, 2], [2, 3], [4, 5], [6, 7]]
-arr2 = [[0, 2], [2, 3], [4, 5], [6, 7]]
+# arr1 = [[0, 2], [2, 3], [4, 5], [6, 7]]
+# arr2 = [[0, 2], [2, 3], [4, 5], [6, 7]]
+arr1 = [1, 2, 3, 4]
+arr2 = [1, 2, 3, 4]
 puts "original arrays (should be the same)"
 p arr1
 p arr2
-arr1[3][0] = 7
-arr1[0][1] = 22
-arr1[1][1] = 10
+# arr1[3][0] = 7
+# arr1[0][1] = 22
+# arr1[1][1] = 10
+arr1[1] = 7
+arr1[2] = 45
 puts "changed arr1 not arr2"
 p arr1
 p arr2
