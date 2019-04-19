@@ -1,6 +1,12 @@
 class RestaurantOrder
     attr_reader :name, :bill #need bill as a reader cause we're trying to read it outside the \class. We need a method to read it which this \does
 
+    class << self
+        def count
+            @count
+        end
+    end
+
     def initialize(name)
         @name = name
         @bill = 0
@@ -39,3 +45,5 @@ class RestaurantOrder
         order_bill
     end
 end
+
+class CustomerOrder < RestaurantOrder
