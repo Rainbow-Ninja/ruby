@@ -1,138 +1,288 @@
-#----------------------------------------------------------------
-# writing to a file
-#----------------------------------------------------------------
+# # pants = true
 
-# file = File.open("Jonewfile.txt", "a+") #a+ means add to what already exists. Just opens file
-# puts "What is your favorite color?"
-# color = gets.chomp
-# file.puts("Your fav colour is #{color} ")
-# file.close #closes file when done
-# file = File.open("Jonewfile.txt", "a+") {|file| file.puts "I opened the file again"} #curly brackets opens and closes the file in one.
-# blue = File.open("some_file_name.txt", "w") { |file| file.puts "I wrote this with ruby!\n"}
-# #w means wipe the file then write to it
-# # File.open("Jonewfile.txt").readlines.each do |line| #prints out whole file
-# # puts line
-# # end
-# # File.open("some_file_name.txt").readlines.each do |line|
-# # puts line
+# # if at_home
+# #     pants = PJs || pants = nil
 # # end
 
-# #---------------------------------------------------------------------------
-# # .detect
-# #---------------------------------------------------------------------------
 
-# # arr = [1, 2, 3, 4, 5,6, 7]
-# # answer = arr.detect{|i| arr[i] i == 8}
-# # if answer
-# #     puts "I found it"
-# # else
-# #     puts "I didn't find it"
+# #----------------------------------------------------------------
+# # writing to a file
+# #----------------------------------------------------------------
+
+# # file = File.open("Jonewfile.txt", "a+") #a+ means add to what already exists. Just opens file
+# # puts "What is your favorite color?"
+# # color = gets.chomp
+# # file.puts("Your fav colour is #{color} ")
+# # file.close #closes file when done
+# # file = File.open("Jonewfile.txt", "a+") {|file| file.puts "I opened the file again"} #curly brackets opens and closes the file in one.
+# # blue = File.open("some_file_name.txt", "w") { |file| file.puts "I wrote this with ruby!\n"}
+# # #w means wipe the file then write to it
+# # # File.open("Jonewfile.txt").readlines.each do |line| #prints out whole file
+# # # puts line
+# # # end
+# # # File.open("some_file_name.txt").readlines.each do |line|
+# # # puts line
+# # # end
+
+# # #---------------------------------------------------------------------------
+# # # .detect
+# # #---------------------------------------------------------------------------
+
+# # # arr = [1, 2, 3, 4, 5,6, 7]
+# # # answer = arr.detect{|i| arr[i] i == 8}
+# # # if answer
+# # #     puts "I found it"
+# # # else
+# # #     puts "I didn't find it"
+# # # end
+# # #---------------------------------------------------------------------------
+# # class Hello
+# #     def say_hi
+# #         puts "Hello"
+# #     end
 # # end
-# #---------------------------------------------------------------------------
-# class Hello
-#     def say_hi
-#         puts "Hello"
+
+# # class Hi < Hello
+# #     def welcome
+# #         puts "Welcome"
+# #         Hello.new.say_hi
+# #     end
+# # end
+
+# # blue = Hi.new.welcome
+
+# # arr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
+# # puts "pick a letter a - j "
+# # answer = gets.chomp
+# # has = arr.include?(answer)
+# # puts has
+
+# # drinks = {"1. Cocktail" => ["$22", 8], "beer" => ["$12", 3], "3. Water" => ["$6", 0.15]}
+# # puts drinks["1. Cocktail"]
+# # puts drinks["beer"[0]]
+# #--------------------------------------------------------------------------------------
+# # require 'rubygems'
+# # require 'gosu'
+
+# # $LOAD_PATH << './lib'
+# # Dir.glob("lib/*.rb").each do |file|
+# #   require File.basename(file, "*.rb")
+# # end
+
+# # include Gosu
+
+# # WIDTH = 1440
+# # HEIGHT = 900
+
+# # class Main < Window
+
+# #   attr_accessor :controller
+
+# #   def initialize
+# #     puts 'debugg info'
+# #     super(WIDTH, HEIGHT, false)
+# #     self.caption            = "Practice"
+# #     @menu_controller        = Menu.new(self)
+# #     @game_over_screen       = GameOverScreen.new(self)
+# #     @level_finished_screen  = LevelFinishedScreen.new(self)
+# #     @controller             = @menu_controller
+# #     @levels                 = read_levels
+
+# #     show_main_menu
+# #   end
+
+# #   def show_main_menu
+# #     @levels = read_levels
+# #     @controller = @menu_controller
+# #   end
+
+# #   def show_next_level
+# #     next_level = @levels.pop
+# #     if next_level
+# #       @controller = Level.new(self, next_level)
+# #     else
+# #       show_main_menu
+# #     end
+# #   end
+
+# #   def show_game_over_screen
+# #     @controller = @game_over_screen
+# #   end
+
+# #   def show_level_finished_screen
+# #     @controller = @level_finished_screen
+# #   end
+
+# #   def update
+# #     @controller.update
+# #   end
+
+# #   def draw
+# #    @controller.draw
+# #   end
+
+# #   def button_down(id)
+# #     @controller.button_down(id)
+# #   end
+
+# #   protected
+
+# #   def read_levels
+# #     Dir.glob("levels/*.txt").map do |path|
+# #       {
+# #         :path  => path,
+# #         :level => File.basename(path, ".txt").to_i
+# #       }
+# #     end.reverse
+# #   end
+
+# # end
+
+# # puts "Do you like wrestling?"
+# #   gets.chomp
+# #     puts "This is about to blow your mind"
+# #     sleep(2)
+# # Main.new.show
+# #--------------------------------------------------------------------------
+# # Display a title bar.
+# # print("\t**********************************************")
+# # print("\t***  Greeter - Hello old and new friends!  ***")
+# # print("\t**********************************************")
+
+# # # Print a bunch of information, in short intervals
+# # names = ['aaron', 'brenda', 'cyrene', 'david', 'eric']
+
+# # # Print each name 5 times.
+# # for name in names
+# #     # Clear the screen before listing names.
+# #     system('clear')
+    
+# #     # Display the title bar.
+# #     puts("\t**********************************************")
+# #     puts("\t***  Greeter - Hello old and new friends!  ***")
+# #     puts("\t**********************************************")
+
+# # x=0
+# #     print("\n\n")
+# #     while x<5
+# #         puts(names[x])
+    
+# #     # Pause for 1 second between batches.
+# #     sleep(1)
+# #     x +=1
+# #     end
+# #   end
+# #-----------------------------------------------------------
+# # name  = "Big Bird"
+# # arr3 = name.chars
+# # p name
+# # p arr3
+# # arr4 = arr3.join("")
+# # # p "#{arr3.join("")}"
+# # #arr3.map {|i| i.to_s}.join
+# # p arr4
+# #-----------------------------------------------------------
+
+# # a = [1, 1, 2, 3, 4, 5, 6]
+# # b = [1, 2, 2, 7, 8, 9]
+# # def array_diff(a, b)
+# #     a.delete_if {|x| b.include?(x)}
+# #     return a
+# # end
+# # new_a = array_diff(a,b)
+# # p new_a
+
+# #---------------------------------------------
+
+# # def maskify(cc)
+# #   arr = cc.chars
+# #   arr.fill("#", 0..-5)
+# #   new_arr = arr.join("")
+# #   return new_arr
+# # end
+
+# # hey = maskify("3223231231")
+# # print hey
+# #-------------------------------------------------------------
+# # def add_binary(a,b)
+# #   sum = a + b
+# #   return binary = sum.to_s(2)
+# # end
+
+# # # puts binary = add_binary(3, 4)
+# # #---------------------------------------------------------------
+# # arr1 = [2, 2, 7, 4, 7, 2, 2] #pos3 =>4
+# # arr2 = [5, -3, 4, -5, 1, 0, 1] #pos4=>1
+# # arr3 = [1, 2, 3, 4, 5, 6, 7]
+# # arr4 = [0, 5, -5]
+# # arr5 = [10,-80,10,10,15,35,20]
+
+# # #puts arr1[0..4].reduce(:+)
+
+# # def find_even_index(arr)
+# #     count = 1
+# #     arr.unshift(0) #adding on to compare to previous if needed as cannot compare nil
+# #     arr.push(0)
+# #     arr.each {|x| hey = arr[0..(count-1)].reduce(:+) == arr[(count+1)..-1].reduce(:+)
+# #         if hey == true
+# #            return count -1
+# #         elsif hey == false && count == arr.length-1
+# #             return -1
+# #         elsif hey == false
+# #             count +=1
+# #         end
+# #     }
+# # end
+
+# # spot = find_even_index(arr5)
+# # p "index is #{spot}"
+# # #---------------------------------------------------------------
+# arr1 = ["jo", "matt", "roh"]
+# arr2 = []
+# arr3 = ["jo", "matt", "roh", "alex", "jordan", "casey"]
+# arr4 = ["jo", "matt", "roh", "alex"]
+
+# def likes(names)
+#     arr = []
+#     if names.empty? 
+#         return "no one likes this"
+#     elsif
+#         names.length == 1
+#         arr.push(names[0])
+#         arr.push(" likes this")
+#         name = arr.join
+#         return name        
+#     elsif names.length <=3
+#         for item in names[0...-2]
+#             arr.push(item, ", ")
+#         end
+#         arr.push(names[-2])
+#         arr.push(" and #{names[-1]} like this")
+#         name = arr.join
+#         return name
+#     else 
+#         for item in names[0...1]
+#             arr.push(item, ", ")
+#         end
+#         arr.push names[1]
+#         arr.push(" and #{names.length-2} others like this")
+#         name = arr.join
+#         return name
 #     end
 # end
 
-# class Hi < Hello
-#     def welcome
-#         puts "Welcome"
-#         Hello.new.say_hi
-#     end
-# end
-
-# blue = Hi.new.welcome
-
-# arr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
-# puts "pick a letter a - j "
-# answer = gets.chomp
-# has = arr.include?(answer)
-# puts has
-
-# drinks = {"1. Cocktail" => ["$22", 8], "beer" => ["$12", 3], "3. Water" => ["$6", 0.15]}
-# puts drinks["1. Cocktail"]
-# puts drinks["beer"[0]]
-
-require 'rubygems'
-require 'gosu'
-
-$LOAD_PATH << './lib'
-Dir.glob("lib/*.rb").each do |file|
-  require File.basename(file, "*.rb")
+# print name = likes(arr1)
+# puts ""
+# print name = likes(arr2)
+# puts ""
+# print name = likes(arr3)
+# puts ""
+# print name = likes(arr4)
+#-------------------------------------------------------------
+def song_decoder(song)
+   string = song.gsub("WUB", " ")
+   return string.split.join(" ")
 end
 
-include Gosu
-
-WIDTH = 1440
-HEIGHT = 900
-
-class Main < Window
-
-  attr_accessor :controller
-
-  def initialize
-    puts 'debugg info'
-    super(WIDTH, HEIGHT, false)
-    self.caption            = "Practice"
-    @menu_controller        = Menu.new(self)
-    @game_over_screen       = GameOverScreen.new(self)
-    @level_finished_screen  = LevelFinishedScreen.new(self)
-    @controller             = @menu_controller
-    @levels                 = read_levels
-
-    show_main_menu
-  end
-
-  def show_main_menu
-    @levels = read_levels
-    @controller = @menu_controller
-  end
-
-  def show_next_level
-    next_level = @levels.pop
-    if next_level
-      @controller = Level.new(self, next_level)
-    else
-      show_main_menu
-    end
-  end
-
-  def show_game_over_screen
-    @controller = @game_over_screen
-  end
-
-  def show_level_finished_screen
-    @controller = @level_finished_screen
-  end
-
-  def update
-    @controller.update
-  end
-
-  def draw
-   @controller.draw
-  end
-
-  def button_down(id)
-    @controller.button_down(id)
-  end
-
-  protected
-
-  def read_levels
-    Dir.glob("levels/*.txt").map do |path|
-      {
-        :path  => path,
-        :level => File.basename(path, ".txt").to_i
-      }
-    end.reverse
-  end
-
-end
-
-puts "Do you like wrestling?"
-  gets.chomp
-    puts "This is about to blow your mind"
-    sleep(2)
-Main.new.show
+original = song_decoder("WUBWEWUBAREWUBWUBTHEWUBCHAMPIONSWUBMYWUBFRIENDWUB")
+print original
