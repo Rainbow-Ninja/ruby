@@ -2,6 +2,7 @@ class Human #name using PascalCaseLikeThis
     def initialize
         @name = "Bob" #instance variable, only avail in this \class
     end
+    
     def name #this allows me to use name outside the \class
         @name
     end
@@ -17,9 +18,11 @@ class Human #name using PascalCaseLikeThis
     def initialize(name)
         @name = name #instance variable, only avail in this \class
     end
+
     def name #this allows me to use name outside the \class
         @name
     end
+    
     def walk
         puts "I can walk"
     end

@@ -14,7 +14,7 @@
 # end
 # greet(name)
 
-# #block
+#block
 # def greet
 #     puts "before yield"
 #     yield
@@ -71,12 +71,12 @@
 # end
 
 # my_each(names){|name| puts "Welcome #{name}"}
-#-------------------------------------------------
-numbers = [10, 2, 3, 5, 7, 18, 12]
-print numbers.find {|num| num>5} #returns first num>5
-print numbers.find_all{|num| num>5} #returns all numbers >5
-print numbers.find_all{|num| num%2==0} #returns all even nums
-print numbers.delete_if{|num| num%2==0} #mutating. Also deletes all even numbers
+# # #-------------------------------------------------
+# numbers = [10, 2, 3, 5, 7, 18, 12]
+# print numbers.find {|num| num>5} #returns first num>5
+# print numbers.find_all{|num| num>5} #returns all numbers >5
+# print numbers.find_all{|num| num%2==0} #returns all even nums
+# print numbers.delete_if{|num| num%2==0} #mutating. Also deletes all even numbers
 
 #  --------------------------------------------------------
 

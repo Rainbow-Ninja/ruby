@@ -22,7 +22,7 @@
 # # end
 
 # # #creating a new object/instance of a class
-# # cow = Animal.new #cow can use every methodin that class
+# # cow = Animal.new #cow can use every method in that class
 # # cow.make_noise("moo")
 # # cow.walk
 # # cow.eat

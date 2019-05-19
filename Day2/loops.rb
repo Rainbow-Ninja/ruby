@@ -48,8 +48,11 @@
 # gentech.map do |element|
 
 arr = [1, 2, 3, 4, 5, 6, 7, 7, 7, 8]
-#puts arr.count(7)
-#puts arr.drop(5)
-#puts arr.pop(5)
-#puts arr.sample(3)
-puts arr.slice!(1)
+puts "First line 'count 7' #{arr.count(7)}"
+puts "second 'drop 5' #{arr.drop(5)}"
+puts "third 'pop 5' #{arr.pop(5)}"
+p arr
+# puts "four 'sample 3' #{arr.sample(3)}"
+# puts "last 'slice 1' #{arr.slice!(1)}"
+# slicer = arr.slice!(3)
+# p slicer

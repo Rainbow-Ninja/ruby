@@ -1,4 +1,4 @@
-# #moduels are wrappers arounf the \class used for a couple of reasons, one of the reasons being name spacing
+# #modules are wrappers around the \class used for a couple of reasons, one of the reasons being name spacing
 # module CalendarDate
 #     class Date
 #         # \def self.current_date
@@ -30,7 +30,7 @@
 # # Date.show_date  #prints out 'print out meeting date' casue it was the latest written one
 
 # #call \module
-# # ModuleDate::ClassName.ClassMethod
+# # ModuleName::ClassName.ClassMethod
 # CalendarDate::Date.current_date
 # MeetingDate::Date.show_date
 
