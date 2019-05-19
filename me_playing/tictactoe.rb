@@ -1,18 +1,18 @@
-moves_so_far = Array.new(3){Array.new(3, "-")}
+moves_so_far = Array.new(3){Array.new(3, " ")}
 $player = "Player 1"
 no_winner = true
 total_moves = 0
 
 def print_board(moves_so_far) #prints the board with current moves included
-    puts "         |         |         "
-    puts "    #{moves_so_far[0][0]}    |    #{moves_so_far[0][1]}    |    #{moves_so_far[0][2]}    "
-    puts "_________|_________|_________"
-    puts "         |         |         "
-    puts "    #{moves_so_far[1][0]}    |    #{moves_so_far[1][1]}    |    #{moves_so_far[1][2]}    "
-    puts "_________|_________|_________"
-    puts "         |         |         "
-    puts "    #{moves_so_far[2][0]}    |    #{moves_so_far[2][1]}    |    #{moves_so_far[2][2]}    "
-    puts "         |         |         "
+    puts "\n               |         |         "
+    puts "          #{moves_so_far[0][0]}    |    #{moves_so_far[0][1]}    |    #{moves_so_far[0][2]}    "
+    puts "      _________|_________|_________"
+    puts "               |         |         "
+    puts "          #{moves_so_far[1][0]}    |    #{moves_so_far[1][1]}    |    #{moves_so_far[1][2]}    "
+    puts "      _________|_________|_________"
+    puts "               |         |         "
+    puts "          #{moves_so_far[2][0]}    |    #{moves_so_far[2][1]}    |    #{moves_so_far[2][2]}    "
+    puts "               |         |         "
 end
 
 def switch_player(total_moves) #switches between player 1 and player 2
@@ -23,7 +23,7 @@ def switch_player(total_moves) #switches between player 1 and player 2
         else
             $player = "Player 2"
         end
-        puts "\n#{$player} your turn: "
+        puts "\n    #{$player} your turn: "
     end
     return total_moves
 end
@@ -44,7 +44,7 @@ def ask_for_move(moves_so_far) #asks player for position to mark. Loops until va
         valid_column = false
 
         while valid_row == false #loops until player gives valid row choice
-            puts "\nWould you like to go in the \n1. Top row \n2. Middle row or \n3. Bottom row?\n(type 1, 2 or 3) "
+            puts "\n    Would you like to go in the \n    1. Top row \n    2. Middle row or \n    3. Bottom row?\n    (type 1, 2 or 3) "
             row = gets.chomp.to_i
             if row == 1
                 posA = 0
@@ -60,8 +60,11 @@ def ask_for_move(moves_so_far) #asks player for position to mark. Loops until va
             end
         end
         
+        system('clear')
+        print_board(moves_so_far)
+
         while valid_column == false #loops until player gives valid column choice
-            puts "\nWould you like to go on the \n1. Left \n2. Middle or \n3. Right of the row?\n(type 1, 2 or 3) "
+            puts "\n    Would you like to go on the \n    1. Left \n    2. Middle or \n    3. Right of the row?\n    (type 1, 2 or 3) "
             column = gets.chomp.to_i
             if column == 1
                 posB = 0
@@ -76,8 +79,10 @@ def ask_for_move(moves_so_far) #asks player for position to mark. Loops until va
                 puts "\n*** Invalid option. Try again ***"
             end
         end
-   
-        if  moves_so_far[posA][posB] == "-" #makes sure spot is actually free then marks it
+        
+        system('clear')
+
+        if  moves_so_far[posA][posB] == " " #makes sure spot is actually free then marks it
             mark_board(moves_so_far, posA, posB)
             print_board(moves_so_far)
             spot_free = true
@@ -94,7 +99,7 @@ def cool_end #does cool flashy stars for the winner
     stars2 = " *  *  *  *  *  *  *  *  *  *  *  *  \n\n           #{$player} Wins!!\n\n *  *  *  *  *  *  *  *  *  *  *  *  "
     stars3 = "  *  *  *  *  *  *  *  *  *  *  *  * \n\n           #{$player} Wins!!\n\n*  *  *  *  *  *  *  *  *  *  *  *  *"
     
-    sleep(3)
+    sleep(1.5)
     while(start <= 20)
         print stars1
         sleep(0.1)
@@ -110,7 +115,7 @@ def cool_end #does cool flashy stars for the winner
 end
 
 def winner(moves_so_far) #checks to see if either player has won yet
-    if ((moves_so_far[0][0]==moves_so_far[0][1]&&moves_so_far[0][0]==moves_so_far[0][2]))&&((moves_so_far[0][0]!="-"&&moves_so_far[0][1]!="-"&&moves_so_far[0][2]!="-"))||((moves_so_far[1][0]==moves_so_far[1][1]&&moves_so_far[1][0]==moves_so_far[1][2]))&&((moves_so_far[1][0]!="-"&&moves_so_far[1][1]!="-"&&moves_so_far[1][2]!="-"))||((moves_so_far[2][0]==moves_so_far[2][1]&&moves_so_far[2][0]==moves_so_far[2][2]))&&((moves_so_far[2][0]!="-"&&moves_so_far[2][1]!="-"&&moves_so_far[2][2]!="-"))||((moves_so_far[0][0]==moves_so_far[1][0]&&moves_so_far[0][0]==moves_so_far[2][0]))&&((moves_so_far[0][0]!="-"&&moves_so_far[1][0]!="-"&&moves_so_far[2][0]!="-"))||((moves_so_far[0][1]==moves_so_far[1][1]&&moves_so_far[0][1]==moves_so_far[2][1]))&&((moves_so_far[0][1]!="-"&&moves_so_far[1][1]!="-"&&moves_so_far[2][1]!="-"))||((moves_so_far[0][2]==moves_so_far[1][2]&&moves_so_far[0][2]==moves_so_far[2][2]))&&((moves_so_far[0][2]!="-"&&moves_so_far[1][2]!="-"&&moves_so_far[2][2]!="-"))||((moves_so_far[0][0]==moves_so_far[1][1]&&moves_so_far[0][0]==moves_so_far[2][2]))&&((moves_so_far[0][0]!="-"&&moves_so_far[1][1]!="-"&&moves_so_far[0][0]!="-"))||((moves_so_far[0][2]==moves_so_far[1][1]&&moves_so_far[0][2]==moves_so_far[2][0]))&&((moves_so_far[0][2]!="-"&&moves_so_far[1][1]!="-"&&moves_so_far[0][2]!="-"))
+    if ((moves_so_far[0][0]==moves_so_far[0][1]&&moves_so_far[0][0]==moves_so_far[0][2]))&&((moves_so_far[0][0]!=" "&&moves_so_far[0][1]!=" "&&moves_so_far[0][2]!=" "))||((moves_so_far[1][0]==moves_so_far[1][1]&&moves_so_far[1][0]==moves_so_far[1][2]))&&((moves_so_far[1][0]!=" "&&moves_so_far[1][1]!=" "&&moves_so_far[1][2]!=" "))||((moves_so_far[2][0]==moves_so_far[2][1]&&moves_so_far[2][0]==moves_so_far[2][2]))&&((moves_so_far[2][0]!=" "&&moves_so_far[2][1]!=" "&&moves_so_far[2][2]!=" "))||((moves_so_far[0][0]==moves_so_far[1][0]&&moves_so_far[0][0]==moves_so_far[2][0]))&&((moves_so_far[0][0]!=" "&&moves_so_far[1][0]!=" "&&moves_so_far[2][0]!=" "))||((moves_so_far[0][1]==moves_so_far[1][1]&&moves_so_far[0][1]==moves_so_far[2][1]))&&((moves_so_far[0][1]!=" "&&moves_so_far[1][1]!=" "&&moves_so_far[2][1]!=" "))||((moves_so_far[0][2]==moves_so_far[1][2]&&moves_so_far[0][2]==moves_so_far[2][2]))&&((moves_so_far[0][2]!=" "&&moves_so_far[1][2]!=" "&&moves_so_far[2][2]!=" "))||((moves_so_far[0][0]==moves_so_far[1][1]&&moves_so_far[0][0]==moves_so_far[2][2]))&&((moves_so_far[0][0]!=" "&&moves_so_far[1][1]!=" "&&moves_so_far[0][0]!=" "))||((moves_so_far[0][2]==moves_so_far[1][1]&&moves_so_far[0][2]==moves_so_far[2][0]))&&((moves_so_far[0][2]!=" "&&moves_so_far[1][1]!=" "&&moves_so_far[0][2]!=" "))
        cool_end
        return false
     else
@@ -121,8 +126,8 @@ end
 #-------------------------------------------------------------------------------------------
 
 print_board(moves_so_far)
-puts "** Player 1: you are naughts. Player 2: you are crosses **"
-puts "\nPlayer 1 goes first"
+puts "\n\n** Player 1: you are naughts. Player 2: you are crosses **"
+puts "\n    Player 1 goes first"
 while no_winner&&(total_moves<9)
     ask_for_move(moves_so_far)
     no_winner = winner(moves_so_far)

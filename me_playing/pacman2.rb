@@ -1,3 +1,5 @@
+require 'io/console'
+
 board = Array.new(10){Array.new(20)}
 $posA = 5
 $posB = 0
@@ -160,16 +162,16 @@ def conflict
 end
 
 print_board(board)
-require 'io/console'
+
 loop do
     case $stdin.getch
     when 'q'    then exit
-    when "\c?"  then puts 'backspace'
+   # when "\c?"  then puts 'backspace'
     when "\e"   # ANSI escape sequence
       case $stdin.getch
       when '['  # CSI
         case $stdin.getch
-        when 'A' then board = move_up(board, current_spot)
+        when 'A' then board = move_up(board, current_spot) #\e[A is the input for up arrow
         when 'B' then board = move_down(board, current_spot)
         when 'C' then board = move_right(board, current_spot)
         when 'D' then board = move_left(board, current_spot)
