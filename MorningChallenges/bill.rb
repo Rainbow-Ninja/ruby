@@ -26,8 +26,20 @@ items = [
 # # Format your total so it always shows two decimal places, e.g. $12.00
 # # Allow items to be added to the list. E.g. "Press 1 to add items, press 2 to work out a total".
 
-# puts "What is your name? "
-# customer = gets.chomp
+person = 0
+puts "What is your name? "
+customer = gets.chomp.capitalize
 
-check = items(0).has_value?("John")
-puts check
+while person < items.length
+    check = items[person].has_value?(customer)
+    if check == true
+        puts "#{customer} owes $#{'%.2f' % items[person][:cost]}"
+        break
+    else
+        person += 1
+    end
+    if person == items.length
+        puts "Sorry, they did not eat"
+    end
+end
+
